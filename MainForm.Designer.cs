@@ -46,7 +46,7 @@
             this.Countdown.CausesValidation = false;
             this.Countdown.Dock = System.Windows.Forms.DockStyle.Top;
             this.Countdown.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Countdown.ForeColor = System.Drawing.Color.Silver;
+            this.Countdown.ForeColor = System.Drawing.Color.DarkGray;
             this.Countdown.Location = new System.Drawing.Point(0, 0);
             this.Countdown.Name = "Countdown";
             this.Countdown.Size = new System.Drawing.Size(800, 13);

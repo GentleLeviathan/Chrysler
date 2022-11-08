@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Chrysler
@@ -19,14 +18,6 @@ namespace Chrysler
 
         private Snowflake[] flakes;
 
-        private int oldWindowLong;
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        [DllImport("user32.dll")]
-        static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-        [DllImport("user32.dll")]
-        static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
-
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +27,6 @@ namespace Chrysler
         {
             AllowTransparency = true;
             Opacity = 0.65;
-            SetFormTransparent(this.Handle);
 
             christmasDay = new DateTime(DateTime.Now.Year, 12, 25);
             Countdown.Text = Program.updateResult + " - " + (christmasDay.DayOfYear - System.DateTime.Now.DayOfYear) + " DAYS";
@@ -59,12 +49,6 @@ namespace Chrysler
             {
                 flakes[i] = new Snowflake(screenWidth, screenHeight, flakeSprite.Width, flakeSprite.Height);
             }
-        }
-
-        public void SetFormTransparent(IntPtr Handle)
-        {
-            oldWindowLong = GetWindowLong(Handle, -20);
-            SetWindowLong(Handle, -20, Convert.ToInt32(oldWindowLong | 0x00080000 | 0x00000020L));
         }
 
         protected override void OnPaint(PaintEventArgs e)
